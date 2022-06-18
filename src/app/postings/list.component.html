@@ -1,0 +1,33 @@
+<link href='https://fonts.googleapis.com/css?family=Mochiy Pop P One' rel='stylesheet'>
+<p class="p1">Posts</p>
+<a routerLink="add" class="button" *ngIf="isAdmin"><span>Add Post</span></a>
+
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <ng-container *ngFor="let posting of postings">
+      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngIf="!currentUser.posts.includes(posting.postId)">
+        <mat-card class="mat-elevation-z4" >
+          <mat-card-header>
+            <mat-card-title>{{posting.postTitle}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-subtitle>{{posting.postType}} <br> {{posting.postCategory}}<br>likes: {{posting.postLikes}}</mat-card-subtitle>
+          <mat-card-content>
+            <p>
+              {{posting.postDescription}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <a routerLink="./edit/{{posting.postId}}" class="button" style="vertical-align:middle" *ngIf="isAdmin"><span>Edit</span></a>
+            <button (click)="deletePosting(posting.postId)" class="button" style="vertical-align:middle" *ngIf="isAdmin" [disabled]="posting.isDeleting">
+              <span *ngIf="posting.isDeleting" class="spinner-border spinner-border-sm"></span>
+              <span *ngIf="!posting.isDeleting">Delete</span>
+            </button>
+            <a routerLink="./applicants/{{posting.postId}}" class="button" style="vertical-align:middle" *ngIf="isAdmin"><span>Applicants</span></a>
+            <button (click)="applyPosting(posting.postId)" class="button" style="vertical-align:middle" *ngIf="!isAdmin" [disabled]="posting.canApply"><span>Apply</span></button>
+            <button (click)="likePosting(posting.postId)" class="button" style="vertical-align:middle" *ngIf="!isAdmin" [disabled]="posting.isActive"><span>Like</span></button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </ng-container>
+    </div>
+</div>

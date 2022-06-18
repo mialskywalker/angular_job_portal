@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
-import { UserService } from '../_services/user.service'
+import { UserService } from '../_services/user.service';
 import { AlertService } from '../_services/alert.service';
-import { Role } from '../_models/role';
 
-@Component({ 
-    templateUrl: 'register.component.html',
-    styleUrls: ['register.component.css']
-})
-export class RegisterComponent implements OnInit {
-    registerForm: FormGroup;
+
+@Component({
+     templateUrl: 'edit.component.html',
+     styleUrls: ['edit.component.css']
+    })
+export class EditComponent implements OnInit {
+    form: FormGroup;
+    id: number;
     loading = false;
     submitted = false;
 
@@ -22,20 +22,29 @@ export class RegisterComponent implements OnInit {
         private router: Router,
         private userService: UserService,
         private alertService: AlertService
-    ) { }
+    ) {}
 
     ngOnInit() {
-        this.registerForm = this.formBuilder.group({
+        this.id = this.route.snapshot.params['id'];
+        
+        // password not required in edit mode
+        const passwordValidators = [Validators.minLength(6)];
+        
+
+        this.form = this.formBuilder.group({
             firstName: ['', Validators.required],
-            lastName: ['',  Validators.required,],
+            lastName: ['', Validators.required],
             email: ['', Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
-            password: ['', [Validators.required, Validators.minLength(6)]],
-            role: ['', Validators.required],
-            posts: [[]]
+            password: ['', passwordValidators]
         });
+
+        
+        this.userService.getById(this.id)
+            .pipe(first())
+            .subscribe(x => this.form.patchValue(x));
     }
 
-    // convenience getter for easy access to form fields
+
 
     onSubmit() {
         this.submitted = true;
@@ -44,17 +53,21 @@ export class RegisterComponent implements OnInit {
         this.alertService.clear();
 
         // stop here if form is invalid
-        if (this.registerForm.invalid) {
+        if (this.form.invalid) {
             return;
         }
 
         this.loading = true;
-        this.userService.register(this.registerForm.value)
+        this.updateUser();
+    }
+
+    private updateUser() {
+        this.userService.update(this.id, this.form.value)
             .pipe(first())
             .subscribe({
                 next: () => {
-                    this.alertService.success('Registration successful', { keepAfterRouteChange: true });
-                    this.router.navigate(['../login'], { relativeTo: this.route });
+                    this.alertService.success('Update successful', { keepAfterRouteChange: true });
+                    this.router.navigate(['../../'], { relativeTo: this.route });
                 },
                 error: error => {
                     this.alertService.error(error);
@@ -62,4 +75,5 @@ export class RegisterComponent implements OnInit {
                 }
             });
     }
+    
 }

@@ -1,17 +1,67 @@
-<div class="col-md-6 offset-md-3 mt-5">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-2"></div>
+        <div class="col-lg-6 col-md-8 login-box">
+            <div class="col-lg-12 login-key">
+                <i class="fa fa-key" aria-hidden="true"></i>
+            </div>
+            <div class="col-lg-12 login-title">
+                JOBIFY
+            </div>
+
+            <div class="col-lg-12 login-form">
+                <div class="col-lg-12 login-form">
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label class="form-control-label" for="email">E-mail</label>
+                            <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+                            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                                <div *ngIf="f['email'].errors['required'] or f['emaill'].errors['pattern']">Please enter a valid e-mail address</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="password">Password</label>
+                            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+                            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                <div *ngIf="f['password'].errors['required']">Password is required</div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 loginbttm">
+                            <div class="col-lg-6 login-btm login-text">
+                                <!-- Error Message -->
+                            </div>
+                            <div class="col-lg-6 login-btm login-button">
+                                <button type="submit" class="btn btn-outline-primary">LOGIN</button>
+                            </div>
+                            <div class="col-lg-6 login-btm register-button">
+                                <button routerLink="../register" class="btn btn-outline-primary">REGISTER</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-2"></div>
+        </div>
+    </div>
+
+
+
+<!-- PRE-FRONTEND WORKING CODE 
+    <div class="col-md-6 offset-md-3 mt-5">
     <div class="alert alert-info">
-        <strong>Normal User</strong> - U: user P: user<br />
-        <strong>Administrator</strong> - U: admin P: admin
+        <strong>Normal User example</strong> - U: user@user.bg P: user123<br />
+        <strong>Organization example</strong> - U: mial@asd.asd P: asdasd
     </div>
     <div class="card">
-        <h4 class="card-header">Angular 8 Role Based Auth Example</h4>
+        <h4 class="card-header">Please log into your account</h4>
         <div class="card-body">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
-                    <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
-                        <div *ngIf="f['username'].errors['required']">Username is required</div>
+                    <label for="email">E-mail</label>
+                    <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+                    <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                        <div *ngIf="f['email'].errors['required'] or f['emaill'].errors['pattern']">Please enter a valid e-mail address</div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -30,4 +80,4 @@
             </form>
         </div>
     </div>
-</div>
+</div> -->

@@ -1,0 +1,111 @@
+<h1 *ngIf="isAddMode">Add Post</h1>
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()" *ngIf="isAddMode">
+    <div class="form-row">
+        <div class="form-group col">
+            <label>Title</label>
+            <input type="text" formControlName="postTitle" class="form-control" [ngClass]="{ 'is-invalid': submitted && addForm.controls['postTitle'].errors }" />
+            <div *ngIf="submitted && addForm.controls['postTitle'].errors" class="invalid-feedback">
+                <div *ngIf="addForm.controls['postTitle'].hasError('required')">A title is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Description</label>
+            <input type="text" formControlName="postDescription" class="form-control" [ngClass]="{ 'is-invalid': submitted && addForm.controls['postDescription'].errors }" />
+            <div *ngIf="submitted && addForm.controls['postDescription'].errors" class="invalid-feedback">
+                <div *ngIf="addForm.controls['postDescription'].hasError('required')">A description is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Type</label>
+            <select formControlName="postType" class="form-control" [ngClass]="{ 'is-invalid': submitted && addForm.controls['postType'].errors }">
+                <option value="part-time">Part-Time</option>
+                <option value="full-time">Full-Time</option>
+                <option value="remote">Remote</option>
+            </select>
+            <div *ngIf="submitted && addForm.controls['postType'].errors" class="invalid-feedback">
+                <div *ngIf="addForm.controls['postType'].hasError('required')">A type is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Category</label>
+            <select formControlName="postCategory" class="form-control" [ngClass]="{ 'is-invalid': submitted && addForm.controls['postCategory'].errors }">
+                <option value="Agriculture, Food & Natural Resources">Agriculture, Food & Natural Resources</option>
+                <option value="Business, Management & Administration">Business, Management & Administration</option>
+                <option value="Communications & Information Systems">Communications & Information Systems</option>
+                <option value="Engineering, Manufacturing & Technology">Engineering, Manufacturing & Technology</option>
+                <option value="Health Science Technology">Health Science Technology</option>
+                <option value="Human Services">Human Services</option>
+            </select>
+            <div *ngIf="submitted && addForm.controls['postCategory'].errors" class="invalid-feedback">
+                <div *ngIf="addForm.controls['postCategory'].hasError('required')">A category is required</div>
+            </div>
+            <!-- <input type="text" formControlName="postCategory" class="form-control" [ngClass]="{ 'is-invalid': submitted && addForm.controls['postCategory'].errors }" />
+            <div *ngIf="submitted && addForm.controls['postCategory'].errors" class="invalid-feedback">
+                <div *ngIf="addForm.controls['postCategory'].hasError('required')">A category is required</div>
+            </div> -->
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="button">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/users" class="btn btn-link">Cancel</a>
+    </div>
+</form>
+
+<h1 *ngIf="!isAddMode">Edit Post</h1>
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()" *ngIf="!isAddMode">
+    <div class="form-row">
+        <div class="form-group col">
+            <label>Title</label>
+            <input type="text" formControlName="postTitle" class="form-control" [ngClass]="{ 'is-invalid': submitted && editForm.controls['postTitle'].errors }" />
+            <div *ngIf="submitted && editForm.controls['postTitle'].errors" class="invalid-feedback">
+                <div *ngIf="editForm.controls['postTitle'].hasError('required')">A title is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Description</label>
+            <input type="text" formControlName="postDescription" class="form-control" [ngClass]="{ 'is-invalid': submitted && editForm.controls['postDescription'].errors }" />
+            <div *ngIf="submitted && editForm.controls['postDescription'].errors" class="invalid-feedback">
+                <div *ngIf="editForm.controls['postDescription'].hasError('required')">A description is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Type</label>
+            <select formControlName="postType" class="form-control" [ngClass]="{ 'is-invalid': submitted && editForm.controls['postType'].errors }">
+                <option value="part-time">Part-Time</option>
+                <option value="full-time">Full-Time</option>
+                <option value="remote">Remote</option>
+            </select>
+            <div *ngIf="submitted && editForm.controls['postType'].errors" class="invalid-feedback">
+                <div *ngIf="editForm.controls['postType'].hasError('required')">A type is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Category</label>
+            <select formControlName="postCategory" class="form-control" [ngClass]="{ 'is-invalid': submitted && editForm.controls['postCategory'].errors }">
+                <option value="Agriculture, Food & Natural Resources">Agriculture, Food & Natural Resources</option>
+                <option value="Business, Management & Administration">Business, Management & Administration</option>
+                <option value="Communications & Information Systems">Communications & Information Systems</option>
+                <option value="Engineering, Manufacturing & Technology">Engineering, Manufacturing & Technology</option>
+                <option value="Health Science Technology">Health Science Technology</option>
+                <option value="Human Services">Human Services</option>
+            </select>
+            <div *ngIf="submitted && editForm.controls['postCategory'].errors" class="invalid-feedback">
+                <div *ngIf="editForm.controls['postCategory'].hasError('required')">A category is required</div>
+            </div>
+            <!-- <input type="text" formControlName="postCategory" class="form-control" [ngClass]="{ 'is-invalid': submitted && editForm.controls['postCategory'].errors }" />
+            <div *ngIf="submitted && editForm.controls['postCategory'].errors" class="invalid-feedback">
+                <div *ngIf="editForm.controls['postCategory'].hasError('required')">A category is required</div>
+            </div> -->
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="button">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/users" class="btn btn-link">Cancel</a>
+    </div>
+</form>

@@ -1,0 +1,11 @@
+.p1 {
+    font-family: 'Mochiy Pop P One';
+    font-size: xx-large;
+  }
+.content {
+    padding: 16px;
+}
+
+.content > mat-card {
+    width: 200px;
+}

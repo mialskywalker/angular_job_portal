@@ -1,23 +1,48 @@
 <!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+<!-- <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
   <div class="navbar-nav">
       <a class="nav-item nav-link" routerLink="/">Home</a>
+      <a class="nav-item nav-link" routerLink="/posts">Job Posts</a>
+      <a class="nav-item nav-link" routerLink="/applied" *ngIf="!isAdmin">Applied Jobs</a>
       <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
+      <a class="nav-item nav-link" routerLink="/edit">Settings</a>
       <a class="nav-item nav-link" (click)="logout()">Logout</a>
   </div>
-</nav>
+</nav> -->
 
 <!-- main app container -->
+<!-- <div class="container">
+  <router-outlet></router-outlet>
+</div> -->
+<!DOCTYPE html>
+<html lang="en">
+<title>Jobify</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: "Lato", sans-serif}
+.mySlides {display: none}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top" *ngIf="currentUser">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large" routerLink="/">HOME</a>
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-small" routerLink="/posts">Job Posts</a>
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-small" routerLink="/applied" *ngIf="!isAdmin" >Applied Jobs</a>
+    <!-- <a class="w3-bar-item w3-button w3-padding-large w3-hide-small" routerLink="/admin" *ngIf="isAdmin" >Admin</a> -->
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-small" (click)="logout()">Logout</a>
+  </div>
+  
+</div>
+<br><br>
 <div class="container">
   <router-outlet></router-outlet>
 </div>
+</body>
+</html>
 
-<!-- credits -->
-<div class="text-center mt-4">
-  <p>
-      <a href="#" target="_top">Angular 8 - Role Based Authorization Tutorial with Example</a>
-  </p>
-  <p>
-      <a href="http://jasonwatmore.com" target="_top">JasonWatmore.com</a>
-  </p>
-</div>

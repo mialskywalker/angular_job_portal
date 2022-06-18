@@ -1,0 +1,96 @@
+.applicant {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 30em;
+  }
+  .applicant li {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: #EEE;
+    margin: .5em;
+    padding: .3em 0;
+    height: 1.6em;
+    border-radius: 4px;
+  }
+  .applicant li:hover {
+    color: #2c3a41;
+    background-color: #e6e6e6;
+    left: .1em;
+  }
+  .applicant li.selected {
+    background-color: black;
+    color: white;
+  }
+  .applicant li.selected:hover {
+    background-color: #505050;
+    color: white;
+  }
+  .applicant li.selected:active {
+    background-color: black;
+    color: white;
+  }
+  .applicant .badge {
+    display: inline-block;
+    font-size: small;
+    color: white;
+    padding: 0.8em 0.7em 0 0.7em;
+    background-color:#405061;
+    line-height: 0em;
+    position: relative;
+    left: -1px;
+    top: -4px;
+    height: 1.8em;
+    margin-right: .8em;
+    border-radius: 4px 0 0 4px;
+  }
+  
+  input {
+    padding: .5rem;
+  }
+
+.button-add {
+	background:linear-gradient(to bottom, #45c759 5%, #2cbd2c 100%);
+	background-color:#45c759;
+	border-radius:22px;
+	border:1px solid #19ab2a;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	padding:10px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #29662b;
+}
+.button-add:hover {
+	background:linear-gradient(to bottom, #2cbd2c 5%, #45c759 100%);
+	background-color:#2cbd2c;
+}
+.button-add:active {
+	position:relative;
+	top:1px;
+}
+
+.button-del {
+	box-shadow:inset 0px 39px 0px -24px #e67a73;
+	background-color:#e4685d;
+	border-radius:4px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	padding:6px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+.button-del:hover {
+	background-color:#eb675e;
+}
+.button-del:active {
+	position:relative;
+	top:1px;
+}

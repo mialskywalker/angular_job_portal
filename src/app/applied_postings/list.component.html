@@ -1,0 +1,22 @@
+<link href='https://fonts.googleapis.com/css?family=Mochiy Pop P One' rel='stylesheet'>
+<p class="p1">Applied Jobs</p>
+
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <ng-container *ngFor="let posting of postings">
+      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngIf="currentUser.posts.includes(posting.postId)">
+        <mat-card class="mat-elevation-z4">
+          <mat-card-header>
+            <mat-card-title>{{posting.postTitle}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-subtitle>{{posting.postType}} <br> {{posting.postCategory}}<br>likes: {{posting.postLikes}}</mat-card-subtitle>
+          <mat-card-content>
+            <p>
+              {{posting.postDescription}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      </ng-container>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="p-4">
+    <div class="container">
+        <router-outlet>
+            <ng-container *ngFor="let user of users">
+                <tr *ngIf="user.id === currentUser.id">
+                    <button (click)="deleteUser(user.id)" class="button" [disabled]="user.isDeleting">
+                        <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
+                        <span *ngIf="!user.isDeleting">Delete Account</span>
+                    </button>
+                </tr>
+            </ng-container>
+        </router-outlet>
+    </div>
+</div>
